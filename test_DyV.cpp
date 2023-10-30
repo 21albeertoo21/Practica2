@@ -12,10 +12,11 @@ int main(){
 	
 	cout << "Vector de ints:" << endl;
 	clase1.Print(a, a.size());
-	clase1.Print(c, c.size());
 	int resultado1 = clase1.BusquedaBinaria(12, a, 0, a.size() - 1);
-	int resultado_inv = clase1.BusquedaBinaria(12, c, 0, c.size() - 1);
 	cout << "El número 12 se encuentra en la posición-> " << resultado1 << endl << endl;
+	
+	clase1.Print(c, c.size());
+	int resultado_inv = clase1.BusquedaBinariaINV(12, c, 0, c.size() - 1);
 	cout << "El número 12 se encuentra en la posición-> " << resultado_inv << endl << endl;
 	
 	cout << "Vector de chars:" << endl;

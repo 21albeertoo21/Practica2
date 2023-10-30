@@ -12,10 +12,8 @@ template <typename T>
 class binary{
 	public:
 		int BusquedaBinaria(T x, vector<T>& v, int ini, int fin){
-			if(ini > fin){
-				cout << "El valor " << x << " no se encuentra en el array\n"; 
+			if(ini > fin)
 				return -1;
-			}
 			else{
 				int media = (ini + fin) / 2;
 				if(v[media] == x)
@@ -28,10 +26,8 @@ class binary{
 		}
 		
 		int BusquedaBinariaINV(T x, vector<T>& v, int ini, int fin){
-			if(ini > fin){
-				cout << "El valor " << x << "no se encuentra en el array\n";
+			if(ini > fin)
 				return -1;
-			}
 			else{
 				int media = (ini + fin) / 2;
 				if(v[media] == x)
@@ -49,6 +45,8 @@ class binary{
 				cout << v[i] << " ";
 			cout << "]" << endl;
 		}
+		
+		
 };
 
 
