@@ -11,6 +11,7 @@ template <typename T>
 
 class binary{
 	public:
+		//ALGORITMO BUSQUEDABINARIA
 		int BusquedaBinaria(T x, vector<T>& v, int ini, int fin){
 			if(ini > fin)
 				return -1;
@@ -39,16 +40,18 @@ class binary{
 			}
 		}
 		
-		T Partition(vector<T>& v, int ini, int fin){
-			int x = v[fin];
+		//ALGORITMO QUICKSORT--------------------------------------------------------------
+		
+		T PartitionLast(vector<T>& v, int ini, int fin){
+			T  x = v[fin];
 			int i =  ini;
 			int aux;
 			for(int j = ini; j < fin; j++){
-				if(v[j] <= x){
-					int aux = v[i];
+				if(v[j] < x){
+					aux = v[i];
 					v[i] = v[j];
 					v[j] = aux;
-					i = i + 1;
+					i++;
 				}
 			}
 			aux = v[i];
@@ -57,11 +60,69 @@ class binary{
 			return i;
 			
 		}
-		void QuickSort(vector<T>& v, int ini, int fin){
+		
+		T PartitionFirst(vector<T>& v, int ini, int fin){
+			T x = v[ini];
+			int i = ini;
+			int aux;
+			for(int j = ini; j < fin; j++){
+				if(v[j] < x){
+					aux = v[i];
+					v[i] = v[j];
+					v[j] = aux;
+					if(i == ini)
+						ini = j;
+					i++;
+				}
+			}
+			aux = v[i];
+			v[i] = v[ini];
+			v[ini] = aux;
+			return i;
+		}
+		
+		T PartitionMid(vector<T>& v, int ini, int fin){
+			int mid = (ini + (fin - ini)) / 2;
+			T x = v[mid];
+			int i = ini;
+			int aux;
+			for(int j = ini; j < fin; j++){
+				if(v[j] < x){
+					aux = v[i];
+					v[i] = v[j];
+					v[j] = aux;
+					if(i == mid)
+						mid = j;
+					i++;
+				}
+			}
+			aux = v[i];
+			v[i] = v[mid];
+			v[mid] = aux;
+			return i;
+		}			
+		
+		void QuickSortLast(vector<T>& v, int ini, int fin){
 			if(ini < fin){
-				int pivot = Partition(v, ini, fin);
-				QuickSort(v, ini, pivot - 1);
-				QuickSort(v, pivot + 1, fin);
+				int pivot = PartitionLast(v, ini, fin);
+				QuickSortLast(v, ini, pivot - 1);
+				QuickSortLast(v, pivot + 1, fin);
+			}
+		}
+		
+		void QuickSortFirst(vector<T>& v, int ini, int fin){
+			if(ini < fin){
+				int pivot = PartitionFirst(v, ini, fin);
+				QuickSortFirst(v, ini, pivot - 1);
+				QuickSortFirst(v, pivot + 1, fin);
+			}
+		}
+		
+		void QuickSortMid(vector<T>& v, int ini, int fin){
+			if(ini < fin){
+				int pivot = PartitionMid(v, ini, fin);
+				QuickSortMid(v, ini, pivot - 1);
+				QuickSortMid(v, pivot + 1, fin);
 			}
 		}
 		

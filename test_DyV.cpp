@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "DyV.h"
+#include <chrono>
 
 int main(){
 	binary<int> clase1;
@@ -29,12 +30,49 @@ int main(){
 	
 	//QUICKSORT ____________________________________________
 	
+	//PIVOTE EN ÚLTIMO ELEMENTO
 	std::cout << "Antes de ordenar el array\n";
 	clase1.Print(d, d.size());
-	clase1.QuickSort(d, 0, d.size() - 1);
+	
+	auto start = std::chrono::system_clock::now();
+	clase1.QuickSortLast(d, 0, d.size() - 1);
+	auto end = std::chrono::system_clock::now();
+	
+	std::chrono::duration<float, std::milli> duration = end - start;
+	
 	std::cout << "\nDespués de ordenarlo\n";
 	clase1.Print(d, d.size());
+	std::cout << "Tiempo con pivote en último elemento: " << duration.count() << "s\n" << std::endl;
 	
+	//PIVOTE EN EL PRIMER ELEMENTO
+	vector<int> e{1, 3, 2, 0, 5, 40}; 
+	std::cout << "Antes de ordenar el array\n";
+	clase1.Print(e, e.size());
+	
+	auto start1 = std::chrono::system_clock::now();
+	clase1.QuickSortFirst(e, 0, e.size() - 1);
+	auto end1 = std::chrono::system_clock::now();
+	
+	std::chrono::duration<float, std::milli> duration1 = end1 - start1;
+	
+	std::cout << "\nDespués de ordenarlo\n";
+	clase1.Print(e, e.size());
+	std::cout << "Tiempo con pivote en primer elemento: " << duration1.count() << "s\n" << std::endl;
+	
+	//PIVOTE EN EL ELEMENTO NEUTRO
+	vector<int> f{1, 3, 2, 0, 5, 40}; 
+	std::cout << "Antes de ordenar el array\n";
+	clase1.Print(f, f.size());
+	
+	auto start2 = std::chrono::system_clock::now();
+	clase1.QuickSortMid(f, 0, f.size() - 1);
+	auto end2 = std::chrono::system_clock::now();
+	
+	std::chrono::duration<float, std::milli> duration2 = end2 - start2;
+	
+	std::cout << "\nDespués de ordenarlo\n";
+	clase1.Print(f, f.size());
+	std::cout << "Tiempo con pivote en el medio: " << duration2.count() << "s" << std::endl;
 	
 	
 	return 0;	
